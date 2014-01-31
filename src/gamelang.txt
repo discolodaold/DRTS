@@ -1,0 +1,57 @@
+* needs to support a tree of object class - single inhertance
+* classes have a ordered list of behaviours, behaviours are in charge of network read and write, creation and event handling
+
+behaviour Position {
+	data {
+		float x
+		float y
+	}
+}
+
+actor Debris [Position] {
+	model {
+		sprite {
+			image "images/debris01.tga"
+		}
+	}
+
+	think {
+		wait 10 {
+			die
+		}
+	}
+}
+
+behaviour Health {
+	data {
+		int health;
+	}
+
+	onDamage(int damage) {
+		health = health - damage;
+		if(health < 0)
+			onDeath();
+		0;
+	}
+}
+
+actor Structure [Position Health] {
+	model {
+		sprite {
+			image "images/debris01.tga"
+		}
+	}
+}
+
+actor Base [Position Health] {
+	model {
+		sprite {
+			image "images/debris01.tga"
+		}
+	}
+
+	think {
+		
+	}
+}
+
